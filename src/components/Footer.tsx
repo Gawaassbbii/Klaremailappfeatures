@@ -96,8 +96,8 @@ export function Footer({ onNavigate }: FooterProps) {
               {[
                 { label: 'À propos', page: 'a-propos' },
                 { label: 'Blog', page: 'blog' },
-                { label: 'Carrières', page: 'carrieres' },
-                { label: 'Contact', page: 'contact' }
+                { label: 'Contact', page: 'contact' },
+                { label: 'FAQ', page: 'faq' }
               ].map((item, index) => (
                 <motion.li 
                   key={index}

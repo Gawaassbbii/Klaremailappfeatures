@@ -70,6 +70,7 @@ export function Navigation({ onNavigate, currentPage }: NavigationProps) {
           className="px-6 py-2 bg-black text-white rounded-full text-[14px]"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => onNavigate('inscription')}
         >
           Commencer
         </motion.button>

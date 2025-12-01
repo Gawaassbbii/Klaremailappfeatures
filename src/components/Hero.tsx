@@ -4,7 +4,11 @@ import { EmailMockup } from './EmailMockup';
 import { ArrowRight } from 'lucide-react';
 import logo from 'figma:asset/78306b29058fa54be2e5709ba9b04f6ea4b3216b.png';
 
-export function Hero() {
+interface HeroProps {
+  onNavigate: (page: string) => void;
+}
+
+export function Hero({ onNavigate }: HeroProps) {
   const [emailName, setEmailName] = useState('votre_nom');
 
   return (
@@ -105,6 +109,7 @@ export function Hero() {
                 className="w-full bg-black text-white py-4 rounded-xl flex items-center justify-center gap-3 text-[18px] group"
                 whileHover={{ scale: 1.03, backgroundColor: "#1f2937" }}
                 whileTap={{ scale: 0.97 }}
+                onClick={() => onNavigate('inscription')}
               >
                 Créer mon adresse
                 <motion.div
@@ -119,19 +124,21 @@ export function Hero() {
               </p>
             </motion.div>
 
-            {/* Secondary CTA */}
+            {/* Main CTA */}
             <motion.div 
               className="flex flex-wrap gap-4 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
               <motion.button 
-                className="px-8 py-4 border-2 border-black rounded-full hover:bg-black hover:text-white transition-colors text-black"
+                className="px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => onNavigate('inscription')}
               >
-                En savoir plus
+                Commencer
+                <ArrowRight size={20} />
               </motion.button>
             </motion.div>
 

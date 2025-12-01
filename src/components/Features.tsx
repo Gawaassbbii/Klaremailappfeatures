@@ -2,6 +2,10 @@ import React from 'react';
 import { Clock, Shield, Brain, Trash2, RotateCcw } from 'lucide-react';
 import { motion } from 'motion/react';
 
+interface FeaturesProps {
+  onNavigate: (page: string) => void;
+}
+
 const features = [
   {
     icon: Clock,
@@ -10,7 +14,8 @@ const features = [
     subtitle: 'Facteur 2x / jour',
     description: 'Fini les notifications incessantes. Les emails sont livrés par lots, uniquement à 09h00 et 17h00.',
     benefit: 'Retrouvez votre concentration profonde.',
-    color: '#0066FF'
+    color: '#0066FF',
+    page: 'zen-mode'
   },
   {
     icon: Shield,
@@ -19,7 +24,8 @@ const features = [
     subtitle: 'Le Timbre Payant',
     description: 'Si une personne inconnue (hors contacts) veut vous écrire, elle doit payer un micro-frais (ex: 0,10€).',
     benefit: '0% de Spam. Les robots ne paient pas.',
-    color: '#00CC88'
+    color: '#00CC88',
+    page: 'premium-shield'
   },
   {
     icon: Brain,
@@ -28,7 +34,8 @@ const features = [
     subtitle: 'Apprentissage Passif',
     description: 'L\'interface remplace intelligemment des mots du quotidien par leur traduction. Priorité Néerlandais (NL), puis Allemand (DE).',
     benefit: 'Apprendre sans effort, juste en lisant ses mails.',
-    color: '#FF6B00'
+    color: '#FF6B00',
+    page: 'immersion-linguistique'
   },
   {
     icon: Trash2,
@@ -37,7 +44,8 @@ const features = [
     subtitle: 'Auto-Delete',
     description: 'Tout email non "Épinglé" est supprimé définitivement après 30 jours.',
     benefit: 'Une Inbox Zero automatique. Réduction de l\'empreinte carbone.',
-    color: '#DD0000'
+    color: '#DD0000',
+    page: 'detox-digitale'
   },
   {
     icon: RotateCcw,
@@ -46,11 +54,12 @@ const features = [
     subtitle: 'Droit à l\'erreur',
     description: 'Possibilité de modifier ou supprimer un email après l\'envoi (via un lien sécurisé).',
     benefit: 'Contrôle total de son image professionnelle.',
-    color: '#9900FF'
+    color: '#9900FF',
+    page: 'rewind'
   }
 ];
 
-export function Features() {
+export function Features({ onNavigate }: FeaturesProps) {
   return (
     <section className="py-24 px-6 border-b border-gray-300 relative overflow-hidden bg-white">
       {/* Animated background gradient */}
@@ -139,6 +148,7 @@ export function Features() {
                   whileHover={{ scale: 1.05, boxShadow: `0 10px 30px ${feature.color}40` }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2 }}
+                  onClick={() => onNavigate(feature.page)}
                 >
                   <p className="text-[16px]">
                     → {feature.benefit}

@@ -2,6 +2,10 @@ import React from 'react';
 import { Check, X } from 'lucide-react';
 import { motion } from 'motion/react';
 
+interface PricingProps {
+  onNavigate?: (page: string) => void;
+}
+
 const pricingData = [
   {
     name: 'KLAR ESSENTIAL',
@@ -33,7 +37,7 @@ const pricingData = [
   }
 ];
 
-export function Pricing() {
+export function Pricing({ onNavigate }: PricingProps) {
   return (
     <section className="py-24 px-6 border-b border-gray-300 relative overflow-hidden bg-gray-50">
       {/* Animated background */}
@@ -146,6 +150,7 @@ export function Pricing() {
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => onNavigate && onNavigate('inscription')}
               >
                 {plan.cta}
               </motion.button>
