@@ -2,7 +2,11 @@ import React from 'react';
 import { motion } from 'motion/react';
 import logo from 'figma:asset/78306b29058fa54be2e5709ba9b04f6ea4b3216b.png';
 
-export function Footer() {
+interface FooterProps {
+  onNavigate: (page: string) => void;
+}
+
+export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="py-16 px-6 relative overflow-hidden bg-gray-800">
       {/* Animated background */}
@@ -28,7 +32,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-4 cursor-pointer" onClick={() => onNavigate('home')}>
               <motion.img 
                 src={logo} 
                 alt="KLAR Logo" 
@@ -57,13 +61,24 @@ export function Footer() {
           >
             <h4 className="text-[16px] uppercase tracking-wide mb-4 text-gray-400">Produit</h4>
             <ul className="space-y-2 text-[14px]">
-              {['Zen Mode', 'Premium Shield', 'Immersion Linguistique', 'Détox Digitale', 'Rewind'].map((item, index) => (
+              {[
+                { label: 'Zen Mode', page: 'zen-mode' },
+                { label: 'Premium Shield', page: 'premium-shield' },
+                { label: 'Immersion Linguistique', page: 'immersion-linguistique' },
+                { label: 'Détox Digitale', page: 'detox-digitale' },
+                { label: 'Rewind', page: 'rewind' }
+              ].map((item, index) => (
                 <motion.li 
                   key={index}
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors">{item}</a>
+                  <button 
+                    onClick={() => onNavigate(item.page)}
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </button>
                 </motion.li>
               ))}
             </ul>
@@ -78,13 +93,23 @@ export function Footer() {
           >
             <h4 className="text-[16px] uppercase tracking-wide mb-4 text-gray-400">Entreprise</h4>
             <ul className="space-y-2 text-[14px]">
-              {['À propos', 'Blog', 'Carrières', 'Contact'].map((item, index) => (
+              {[
+                { label: 'À propos', page: 'a-propos' },
+                { label: 'Blog', page: 'blog' },
+                { label: 'Carrières', page: 'carrieres' },
+                { label: 'Contact', page: 'contact' }
+              ].map((item, index) => (
                 <motion.li 
                   key={index}
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="#" className="text-gray-300 hover:text-white transition-colors">{item}</a>
+                  <button 
+                    onClick={() => onNavigate(item.page)}
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </button>
                 </motion.li>
               ))}
             </ul>
@@ -103,16 +128,20 @@ export function Footer() {
             © 2025 Klar. Tous droits réservés.
           </p>
           <div className="flex gap-6 text-[12px]">
-            {['Confidentialité', 'Conditions', 'Cookies'].map((item, index) => (
-              <motion.a 
+            {[
+              { label: 'Confidentialité', page: 'confidentialite' },
+              { label: 'Conditions', page: 'conditions' },
+              { label: 'Cookies', page: 'cookies' }
+            ].map((item, index) => (
+              <motion.button
                 key={index}
-                href="#" 
+                onClick={() => onNavigate(item.page)}
                 className="text-gray-300 hover:text-white transition-colors"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
-                {item}
-              </motion.a>
+                {item.label}
+              </motion.button>
             ))}
           </div>
         </motion.div>
