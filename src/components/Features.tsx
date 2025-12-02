@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Shield, Brain, Trash2, RotateCcw } from 'lucide-react';
+import { Clock, Shield, Brain, Trash2, RotateCcw, Coins } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface FeaturesProps {
@@ -18,12 +18,12 @@ const features = [
     page: 'zen-mode'
   },
   {
-    icon: Shield,
+    icon: Coins,
     number: '02',
-    title: 'Premium Shield',
-    subtitle: 'Le Timbre Payant',
-    description: 'Si une personne inconnue (hors contacts) veut vous écrire, elle doit payer un micro-frais (ex: 0,10€).',
-    benefit: '0% de Spam. Les robots ne paient pas.',
+    title: 'Smart Paywall',
+    subtitle: 'Votre attention a un prix',
+    description: 'Fixez le prix du timbre (de 0,10€ à 100€). Les inconnus paient pour vous parler. Vous touchez une commission sur chaque email reçu.',
+    benefit: 'Gagnez des crédits tout en éliminant le spam.',
     color: '#00CC88',
     page: 'premium-shield'
   },

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AppProvider } from './context/AppContext';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { VisualFeatures } from './components/VisualFeatures';
@@ -19,6 +20,10 @@ import { ImmersionLinguistique } from './pages/ImmersionLinguistique';
 import { DetoxDigitale } from './pages/DetoxDigitale';
 import { Rewind } from './pages/Rewind';
 import { Inscription } from './pages/Inscription';
+import { Connexion } from './pages/Connexion';
+import { Mailbox } from './pages/Mailbox';
+import { Settings } from './pages/Settings';
+import { PricingPage } from './pages/PricingPage';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -66,24 +71,34 @@ export default function App() {
         return <Rewind onNavigate={setCurrentPage} />;
       case 'inscription':
         return <Inscription />;
+      case 'connexion':
+        return <Connexion onNavigate={setCurrentPage} />;
+      case 'mailbox':
+        return <Mailbox onNavigate={setCurrentPage} />;
+      case 'settings':
+        return <Settings onNavigate={setCurrentPage} />;
+      case 'pricing':
+        return <PricingPage onNavigate={setCurrentPage} />;
       default:
         return (
           <>
-            <Hero />
+            <Hero onNavigate={setCurrentPage} />
             <VisualFeatures />
             <ComparisonSection />
-            <Features />
-            <Pricing />
+            <Features onNavigate={setCurrentPage} />
+            <Pricing onNavigate={setCurrentPage} />
           </>
         );
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Navigation onNavigate={setCurrentPage} currentPage={currentPage} />
-      {renderPage()}
-      <Footer onNavigate={setCurrentPage} />
-    </div>
+    <AppProvider>
+      <div className="min-h-screen bg-gray-100">
+        {currentPage !== 'mailbox' && currentPage !== 'settings' && currentPage !== 'pricing' && <Navigation onNavigate={setCurrentPage} currentPage={currentPage} />}
+        {renderPage()}
+        {currentPage !== 'mailbox' && currentPage !== 'settings' && currentPage !== 'pricing' && <Footer onNavigate={setCurrentPage} />}
+      </div>
+    </AppProvider>
   );
 }

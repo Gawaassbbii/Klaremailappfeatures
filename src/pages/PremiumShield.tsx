@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Shield, Ban, CheckCircle, DollarSign, Users, TrendingUp, Mail } from 'lucide-react';
+import { Shield, Ban, CheckCircle, DollarSign, Users, TrendingUp, Mail, Edit3, Trash2, Clock, Coins, Sliders } from 'lucide-react';
 
 interface PremiumShieldProps {
   onNavigate?: (page: string) => void;
@@ -8,6 +8,7 @@ interface PremiumShieldProps {
 
 export function PremiumShield({ onNavigate }: PremiumShieldProps) {
   const [activeTab, setActiveTab] = useState('concept');
+  const [priceValue, setPriceValue] = useState(0.50);
 
   return (
     <div className="min-h-screen bg-white pt-24">
@@ -24,14 +25,14 @@ export function PremiumShield({ onNavigate }: PremiumShieldProps) {
             whileHover={{ scale: 1.1, rotate: 360 }}
             transition={{ duration: 0.6 }}
           >
-            <Shield size={48} className="text-green-600" />
+            <Coins size={48} className="text-green-600" />
           </motion.div>
-          <h1 className="text-[80px] leading-none tracking-tighter mb-6">Premium Shield</h1>
+          <h1 className="text-[80px] leading-none tracking-tighter mb-6">Smart Paywall</h1>
           <p className="text-[32px] text-gray-700 max-w-3xl mx-auto">
-            Le Timbre Payant
+            Votre attention a un prix
           </p>
           <p className="text-[20px] text-gray-600 max-w-2xl mx-auto mt-4">
-            Une barrière économique simple mais radicalement efficace contre le spam.
+            Vous êtes important. Fixez le prix que les inconnus doivent payer pour vous parler.
           </p>
         </motion.div>
 
@@ -42,8 +43,8 @@ export function PremiumShield({ onNavigate }: PremiumShieldProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-[48px] leading-none tracking-tight mb-6">Le concept</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 className="text-[48px] leading-none tracking-tight mb-6">Monétisation de l'attention</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
               <h3 className="text-[28px] tracking-tight mb-4">🔓 Contacts connus</h3>
               <p className="text-[18px] text-gray-700 leading-relaxed">
@@ -54,10 +55,54 @@ export function PremiumShield({ onNavigate }: PremiumShieldProps) {
             <div>
               <h3 className="text-[28px] tracking-tight mb-4">💰 Nouveaux contacts</h3>
               <p className="text-[18px] text-gray-700 leading-relaxed">
-                Quelqu'un d'inconnu veut vous contacter ? Il doit payer un micro-frais de 0,10€. 
-                Les spammeurs ne paient pas, les humains sérieux oui.
+                Fixez le prix du timbre (de 0,10€ à 100€). Les inconnus paient pour vous parler.
+                Vous touchez 1% de commission sur chaque email reçu.
               </p>
             </div>
+          </div>
+
+          {/* Price Simulator */}
+          <div className="bg-white rounded-2xl p-6 border-2 border-green-400">
+            <div className="flex items-center gap-3 mb-6">
+              <Sliders size={24} className="text-green-600" />
+              <h3 className="text-[24px] tracking-tight">Simulateur de prix</h3>
+            </div>
+            
+            <div className="mb-6">
+              <label className="block text-[16px] mb-3 text-gray-700">
+                Prix du timbre : <span className="text-[24px] text-green-600">{priceValue.toFixed(2)}€</span>
+              </label>
+              <input
+                type="range"
+                min="0.10"
+                max="100"
+                step="0.10"
+                value={priceValue}
+                onChange={(e) => setPriceValue(parseFloat(e.target.value))}
+                className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-green-600"
+              />
+              <div className="flex justify-between text-[12px] text-gray-500 mt-1">
+                <span>0,10€</span>
+                <span>100€</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-green-50 p-4 rounded-xl">
+                <p className="text-[12px] text-gray-600 mb-1">Si 10 personnes vous écrivent :</p>
+                <p className="text-[24px] text-green-600">+{(priceValue * 10 * 0.01).toFixed(2)}€</p>
+                <p className="text-[11px] text-gray-500">Commission 1%</p>
+              </div>
+              <div className="bg-green-50 p-4 rounded-xl">
+                <p className="text-[12px] text-gray-600 mb-1">Par mois (30 emails) :</p>
+                <p className="text-[24px] text-green-600">+{(priceValue * 30 * 0.01).toFixed(2)}€</p>
+                <p className="text-[11px] text-gray-500">Revenu passif</p>
+              </div>
+            </div>
+
+            <p className="text-[13px] text-gray-600 mt-4 text-center">
+              💡 Plus le prix est élevé, moins vous recevez d'emails indésirables, mais plus vous gagnez par contact.
+            </p>
           </div>
         </motion.div>
 

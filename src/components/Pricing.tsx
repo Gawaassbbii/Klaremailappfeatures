@@ -14,6 +14,7 @@ const pricingData = [
     features: [
       { name: 'Apprentissage', value: 'Basique (NL seulement, vocabulaire limité)', available: true },
       { name: 'Zen Mode', value: 'Fixe (09h00 & 17h00)', available: true },
+      { name: 'Smart Paywall', value: 'Gagnez des crédits à chaque email reçu', available: true },
       { name: 'Adresse', value: 'pseudo123@klar.app', available: true },
       { name: 'Rewind', value: '10 secondes pour annuler', available: true },
       { name: 'Signature', value: '"Envoyé avec Klar"', available: true }
@@ -28,6 +29,7 @@ const pricingData = [
     features: [
       { name: 'Apprentissage', value: 'Illimité (NL + DE, Grammaire, Vocabulaire riche)', available: true },
       { name: 'Zen Mode', value: 'Personnalisable (Choisis tes heures)', available: true },
+      { name: 'Smart Paywall', value: 'Gagnez des crédits + Prix personnalisable', available: true },
       { name: 'Adresse', value: 'Alias Premium (prenom@klar.app)', available: true },
       { name: 'Rewind', value: 'Illimité (Édition post-envoi)', available: true },
       { name: 'Signature', value: 'Signature Pro sans pub', available: true }
